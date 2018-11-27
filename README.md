@@ -1,4 +1,6 @@
-# react-native-material-menu &middot; [![npm](https://img.shields.io/npm/v/react-native-material-menu.svg)](https://www.npmjs.com/package/react-native-material-menu) [![license](https://img.shields.io/npm/l/react-native-material-menu.svg)](https://github.com/mxck/react-native-material-menu/blob/master/LICENSE)
+# react-native-enhanced-popup-menu &middot; [![npm](https://img.shields.io/npm/v/react-native-enhanced-popup-menu.svg)](https://www.npmjs.com/package/react-native-material-menu) [![license](https://img.shields.io/npm/l/react-native-material-menu.svg)](https://github.com/likern/react-native-enhanced-popup-menu/blob/master/LICENSE)
+
+## Note: this project is the fork of the original [react-native-material-menu](https://github.com/mxck/react-native-material-menu)
 
 Pure JavaScript [material
 menu](https://material.io/guidelines/components/menus.html) component for React
@@ -9,11 +11,11 @@ Native.
 ## Install
 
 ```bash
-npm install --save react-native-material-menu
+npm install react-native-enhanced-popup-menu --save
 
 or
 
-yarn add react-native-material-menu
+yarn add react-native-enhanced-popup-menu
 ```
 
 ## Usage example
@@ -22,7 +24,7 @@ yarn add react-native-material-menu
 import React from 'react';
 
 import { View, Text } from 'react-native';
-import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
+import Menu, { MenuItem, MenuDivider } from 'react-native-enhanced-popup-menu';
 
 class App extends React.PureComponent {
   _menu = null;
@@ -103,5 +105,6 @@ export default App;
 | color | Line color  | String | "rgba(0,0,0,0.12)" |
 
 ## License
+**Original work** Copyright (c) 2017 Maksim Miliyutin
 
-MIT License. © Maksim Milyutin 2017
+**Modified work** Copyright 2018 Victor Malov
