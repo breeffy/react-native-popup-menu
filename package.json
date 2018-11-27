@@ -1,7 +1,7 @@
 {
-  "name": "react-native-material-menu",
-  "version": "0.4.2",
-  "description": "Material Menu for React Native",
+  "name": "react-native-enhanced-popup-menu",
+  "version": "0.5.0",
+  "description": "Popup Menu for React Native",
   "main": "src/index.js",
   "keywords": [
     "react-native",
@@ -10,9 +10,21 @@
     "material-menu",
     "react-component",
     "material",
+    "popup",
+    "popup-menu",
     "dropdown"
   ],
-  "author": "Maksim Milyutin <mmxckk@gmail.com> (https://github.com/mxck)",
+  "contributors": [
+    {
+      "name": "Maksim Milyutin (original author)",
+      "email": "mmxckk@gmail.com"
+    },
+    {
+      "name": "Victor Malov (current maintainer)",
+      "email": "victor@malov.im",
+      "url": "https://medium.com/scriply"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "~8.2.0",
@@ -32,10 +44,10 @@
     "prop-types": "^15.6.0"
   },
   "bugs": {
-    "url": "https://github.com/mxck/react-native-material-menu/issues"
+    "url": "https://github.com/likern/react-native-enhanced-popup-menu/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mxck/react-native-material-menu.git"
+    "url": "https://github.com/likern/react-native-enhanced-popup-menu.git"
   }
 }
