@@ -1,4 +1,4 @@
-# react-native-enhanced-popup-menu &middot; [![npm](https://img.shields.io/npm/v/react-native-enhanced-popup-menu.svg)](https://www.npmjs.com/package/react-native-material-menu) [![license](https://img.shields.io/npm/l/react-native-material-menu.svg)](https://github.com/likern/react-native-enhanced-popup-menu/blob/master/LICENSE)
+# react-native-enhanced-popup-menu &middot; [![npm](https://img.shields.io/npm/v/react-native-enhanced-popup-menu.svg)](https://www.npmjs.com/package/react-native-enhanced-popup-menu) [![license](https://img.shields.io/npm/l/react-native-enhanced-popup-menu.svg)](https://github.com/likern/react-native-enhanced-popup-menu/blob/master/LICENSE)
 
 ## Note: this project is the fork of the original [react-native-material-menu](https://github.com/mxck/react-native-material-menu)
 
