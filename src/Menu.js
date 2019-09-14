@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable react/no-did-update-set-state */
 /* eslint-disable no-param-reassign */
 import React from 'react';
