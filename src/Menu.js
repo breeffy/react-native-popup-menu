@@ -140,63 +140,6 @@ class Menu extends React.Component {
     };
   }
 
-  /* Measure new menu width and height */
-  _onMenuLayout = event => {
-    const { width, height } = event.nativeEvent.layout;
-    const { menuState, menu } = this.state;
-
-    if (menuState === STATES.MEASURING) {
-      this.setState({
-        menuState: STATES.CALCULATING,
-        menu: {
-          ...menu,
-          width,
-          height,
-        },
-      });
-    }
-  };
-
-  _onDismiss = () => {
-    if (this.props.onHidden) {
-      this.props.onHidden();
-    }
-  };
-
-  show = (
-    componentRef,
-    stickTo = null,
-    extraOffset = null,
-    computeOffset = null,
-  ) => {
-    if (componentRef) {
-      componentRef.measureInWindow((x, y, width, height) => {
-        const top = Math.max(SCREEN_INDENT, y);
-        const left = Math.max(SCREEN_INDENT, x);
-
-        const computedOffset = getComputedOffset(
-          computeOffset,
-          left,
-          top,
-          width,
-          height,
-        );
-        const oldOffsets = { ...this.state.offsets };
-        const newState = {
-          menuState: STATES.MEASURING,
-          component: { left, top, width, height },
-          offsets: {
-            ...oldOffsets,
-            ...(extraOffset ? { staticOffset: extraOffset } : {}),
-            ...(computedOffset ? { computedOffset: computedOffset } : {}),
-          },
-          ...(stickTo ? { stickTo: stickTo } : {}),
-        };
-        this.setState(newState);
-      });
-    }
-  };
-
   componentDidUpdate() {
     const { menuState, menu } = this.state;
 
@@ -244,6 +187,63 @@ class Menu extends React.Component {
       );
     }
   }
+
+  show = (
+    componentRef,
+    stickTo = null,
+    extraOffset = null,
+    computeOffset = null,
+  ) => {
+    if (componentRef) {
+      componentRef.measureInWindow((x, y, width, height) => {
+        const top = Math.max(SCREEN_INDENT, y);
+        const left = Math.max(SCREEN_INDENT, x);
+
+        const computedOffset = getComputedOffset(
+          computeOffset,
+          left,
+          top,
+          width,
+          height,
+        );
+        const oldOffsets = { ...this.state.offsets };
+        const newState = {
+          menuState: STATES.MEASURING,
+          component: { left, top, width, height },
+          offsets: {
+            ...oldOffsets,
+            ...(extraOffset ? { staticOffset: extraOffset } : {}),
+            ...(computedOffset ? { computedOffset: computedOffset } : {}),
+          },
+          ...(stickTo ? { stickTo: stickTo } : {}),
+        };
+        this.setState(newState);
+      });
+    }
+  };
+
+  /* Measure new menu width and height */
+  _onMenuLayout = event => {
+    const { width, height } = event.nativeEvent.layout;
+    const { menuState, menu } = this.state;
+
+    if (menuState === STATES.MEASURING) {
+      this.setState({
+        menuState: STATES.CALCULATING,
+        menu: {
+          ...menu,
+          width,
+          height,
+        },
+      });
+    }
+  };
+
+  _onDismiss = () => {
+    if (this.props.onHidden) {
+      this.props.onHidden();
+    }
+  };
 
   hide = () => {
     const { animation } = this.state;
