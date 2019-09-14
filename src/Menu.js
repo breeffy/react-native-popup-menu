@@ -1,3 +1,4 @@
+/* eslint-disable react/no-did-update-set-state */
 /* eslint-disable no-param-reassign */
 import React from 'react';
 
@@ -196,6 +197,54 @@ class Menu extends React.Component {
     }
   };
 
+  componentDidUpdate() {
+    const { menuState, menu } = this.state;
+
+    if (menuState === STATES.ANIMATING) {
+      return;
+    }
+    if (menuState === STATES.CALCULATING) {
+      const { stickTo, component, offsets } = this.state;
+
+      const baseOffset = getMenuOffset(stickTo, component, menu);
+      const allOffsets = [
+        baseOffset,
+        offsets.staticOffset,
+        offsets.computedOffset,
+      ];
+      const finalOffset = getSummarizedOffset(allOffsets);
+      this.setState({
+        menuState: STATES.SHOWN,
+        menu: {
+          ...menu,
+          left: finalOffset.left,
+          top: finalOffset.top,
+        },
+      });
+    } else if (menuState === STATES.SHOWN) {
+      const { animation } = this.state;
+      this.setState(
+        {
+          menuState: STATES.ANIMATING,
+        },
+        () => {
+          Animated.parallel([
+            Animated.timing(animation.menuSize, {
+              toValue: { x: menu.width, y: menu.height },
+              duration: ANIMATION_DURATION,
+              easing: EASING,
+            }),
+            Animated.timing(animation.opacity, {
+              toValue: 1,
+              duration: ANIMATION_DURATION,
+              easing: EASING,
+            }),
+          ]).start();
+        },
+      );
+    }
+  }
+
   hide = () => {
     const { animation } = this.state;
     Animated.timing(this.state.animation.opacity, {
@@ -311,53 +360,6 @@ class Menu extends React.Component {
         </Modal>
       </View>
     );
-  }
-
-  componentDidUpdate() {
-    const { menuState, menu } = this.state;
-
-    if (menuState === STATES.ANIMATING) {
-      return;
-    } else if (menuState === STATES.CALCULATING) {
-      const { stickTo, component, offsets } = this.state;
-
-      const baseOffset = getMenuOffset(stickTo, component, menu);
-      const allOffsets = [
-        baseOffset,
-        offsets.staticOffset,
-        offsets.computedOffset,
-      ];
-      const finalOffset = getSummarizedOffset(allOffsets);
-      this.setState({
-        menuState: STATES.SHOWN,
-        menu: {
-          ...menu,
-          left: finalOffset.left,
-          top: finalOffset.top,
-        },
-      });
-    } else if (menuState === STATES.SHOWN) {
-      const { animation } = this.state;
-      this.setState(
-        {
-          menuState: STATES.ANIMATING,
-        },
-        () => {
-          Animated.parallel([
-            Animated.timing(animation.menuSize, {
-              toValue: { x: menu.width, y: menu.height },
-              duration: ANIMATION_DURATION,
-              easing: EASING,
-            }),
-            Animated.timing(animation.opacity, {
-              toValue: 1,
-              duration: ANIMATION_DURATION,
-              easing: EASING,
-            }),
-          ]).start();
-        },
-      );
-    }
   }
 }
 
