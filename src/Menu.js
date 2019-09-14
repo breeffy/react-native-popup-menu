@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React from 'react';
 
 import PropTypes from 'prop-types';
@@ -63,24 +64,29 @@ const getMenuOffset = (stickTo, component, menu) => {
     const left = component.left + (component.width - menu.width);
     const top = component.top;
     return { left, top };
-  } else if (stickTo === Position.BOTTOM_LEFT) {
+  }
+  if (stickTo === Position.BOTTOM_LEFT) {
     const left = component.left;
     const top = component.top + component.height;
     return { left, top };
-  } else if (stickTo === Position.BOTTOM_RIGHT) {
+  }
+  if (stickTo === Position.BOTTOM_RIGHT) {
     const left = component.left + (component.width - menu.width);
     const top = component.top + component.height;
     return { left, top };
-  } else if (stickTo === Position.TOP_LEFT) {
+  }
+  if (stickTo === Position.TOP_LEFT) {
     const left = component.left;
     const top = component.top;
     return { left, top };
-  } else if (stickTo === Position.TOP_CENTER) {
+  }
+  if (stickTo === Position.TOP_CENTER) {
     const left =
       component.left + Math.round((component.width - menu.width) / 2);
     const top = component.top;
     return { left, top };
-  } else if (stickTo === Position.BOTTOM_CENTER) {
+  }
+  if (stickTo === Position.BOTTOM_CENTER) {
     const left =
       component.left + Math.round((component.width - menu.width) / 2);
     const top = component.top + component.height;
