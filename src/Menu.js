@@ -55,9 +55,10 @@ const normalizeOffset = extraOffset => {
 };
 
 const getSummarizedOffset = offsetList => {
-  const reducer = (acc, { left, top }) => {
-    return { left: acc.left + left, top: acc.top + top };
-  };
+  const reducer = (acc, { left, top }) => ({
+    left: acc.left + left,
+    top: acc.top + top,
+  });
   return offsetList.reduce(reducer, { left: 0, top: 0 });
 };
 
@@ -214,9 +215,9 @@ class Menu extends React.Component {
           offsets: {
             ...oldOffsets,
             ...(extraOffset ? { staticOffset: extraOffset } : {}),
-            ...(computedOffset ? { computedOffset: computedOffset } : {}),
+            ...(computedOffset ? { computedOffset } : {}),
           },
-          ...(stickTo ? { stickTo: stickTo } : {}),
+          ...(stickTo ? { stickTo } : {}),
         };
         this.setState(newState);
       });
