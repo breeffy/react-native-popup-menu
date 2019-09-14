@@ -18,7 +18,7 @@ const STATES = {
   CALCULATING: 'CALCULATING',
   SHOWN: 'SHOWN',
   HIDDEN: 'HIDDEN',
-  ANIMATING: 'ANIMATING'
+  ANIMATING: 'ANIMATING',
 };
 
 const ANIMATION_DURATION = 300;
@@ -26,63 +26,65 @@ const EASING = Easing.bezier(0.4, 0, 0.2, 1);
 const SCREEN_INDENT = 8;
 
 export const Position = Object.freeze({
-  TOP_LEFT: "TOP_LEFT",
-  TOP_RIGHT: "TOP_RIGHT",
-  TOP_CENTER: "TOP_CENTER",
-  BOTTOM_LEFT: "BOTTOM_LEFT",
-  BOTTOM_RIGHT: "BOTTOM_RIGHT",
-  BOTTOM_CENTER: "BOTTOM_CENTER"
+  TOP_LEFT: 'TOP_LEFT',
+  TOP_RIGHT: 'TOP_RIGHT',
+  TOP_CENTER: 'TOP_CENTER',
+  BOTTOM_LEFT: 'BOTTOM_LEFT',
+  BOTTOM_RIGHT: 'BOTTOM_RIGHT',
+  BOTTOM_CENTER: 'BOTTOM_CENTER',
 });
 
-const normalizeOffset = (extraOffset) => {
-  const reducer = ({left, top}, [prop, value]) => {
-    if (prop === "left") {
+const normalizeOffset = extraOffset => {
+  const reducer = ({ left, top }, [prop, value]) => {
+    if (prop === 'left') {
       left += value;
-    } else if (prop === "right") {
+    } else if (prop === 'right') {
       left -= value;
-    } else if (prop === "top") {
+    } else if (prop === 'top') {
       top += value;
-    } else if (prop === "bottom") {
+    } else if (prop === 'bottom') {
       top -= value;
     }
-    return {left, top};
-  }
+    return { left, top };
+  };
 
-  return Object.entries(extraOffset).reduce(reducer, {left: 0, top: 0});
+  return Object.entries(extraOffset).reduce(reducer, { left: 0, top: 0 });
 };
 
-const getSummarizedOffset = (offsetList) => {
-  const reducer = (acc, {left, top}) => {
-    return { left: acc.left + left, top: acc.top + top};
-  }
-  return offsetList.reduce(reducer, {left: 0, top: 0});
+const getSummarizedOffset = offsetList => {
+  const reducer = (acc, { left, top }) => {
+    return { left: acc.left + left, top: acc.top + top };
+  };
+  return offsetList.reduce(reducer, { left: 0, top: 0 });
 };
 
 const getMenuOffset = (stickTo, component, menu) => {
   if (stickTo === Position.TOP_RIGHT) {
     const left = component.left + (component.width - menu.width);
     const top = component.top;
-    return {left, top};
+    return { left, top };
   } else if (stickTo === Position.BOTTOM_LEFT) {
     const left = component.left;
     const top = component.top + component.height;
-    return {left, top};
+    return { left, top };
   } else if (stickTo === Position.BOTTOM_RIGHT) {
     const left = component.left + (component.width - menu.width);
     const top = component.top + component.height;
-    return {left, top};
+    return { left, top };
   } else if (stickTo === Position.TOP_LEFT) {
     const left = component.left;
     const top = component.top;
-    return {left, top};
-  } else if ((stickTo === Position.TOP_CENTER)) {
-    const left = component.left + Math.round((component.width - menu.width) / 2);
+    return { left, top };
+  } else if (stickTo === Position.TOP_CENTER) {
+    const left =
+      component.left + Math.round((component.width - menu.width) / 2);
     const top = component.top;
-    return {left, top};
-  } else if ((stickTo === Position.BOTTOM_CENTER)) {
-    const left = component.left + Math.round((component.width - menu.width) / 2);
+    return { left, top };
+  } else if (stickTo === Position.BOTTOM_CENTER) {
+    const left =
+      component.left + Math.round((component.width - menu.width) / 2);
     const top = component.top + component.height;
-    return {left, top};
+    return { left, top };
   }
   return null;
 };
@@ -93,7 +95,7 @@ const getComputedOffset = (func, left, top, width, height) => {
     return normalizeOffset(extraOffset);
   }
   return null;
-}
+};
 
 class Menu extends React.Component {
   constructor(props) {
@@ -106,28 +108,28 @@ class Menu extends React.Component {
         left: 0,
         top: 0,
         width: 0,
-        height: 0
+        height: 0,
       },
       menu: {
         left: 0,
         top: 0,
         width: 0,
-        height: 0
+        height: 0,
       },
       offsets: {
         staticOffset: {
           left: 0,
-          top: 0
+          top: 0,
         },
         computedOffset: {
           left: 0,
-          top: 0
-        }
+          top: 0,
+        },
       },
       animation: {
         menuSize: new Animated.ValueXY({ x: 0, y: 0 }),
-        opacity: new Animated.Value(0)
-      }
+        opacity: new Animated.Value(0),
+      },
     };
   }
 
@@ -142,40 +144,51 @@ class Menu extends React.Component {
         menu: {
           ...menu,
           width,
-          height
-        }
+          height,
+        },
       });
     }
-  }
+  };
 
   _onDismiss = () => {
     if (this.props.onHidden) {
       this.props.onHidden();
     }
-  }
+  };
 
-  show = (componentRef, stickTo = null, extraOffset = null, computeOffset = null) => {
+  show = (
+    componentRef,
+    stickTo = null,
+    extraOffset = null,
+    computeOffset = null,
+  ) => {
     if (componentRef) {
       componentRef.measureInWindow((x, y, width, height) => {
         const top = Math.max(SCREEN_INDENT, y);
         const left = Math.max(SCREEN_INDENT, x);
 
-        const computedOffset = getComputedOffset(computeOffset, left, top, width, height);
-        const oldOffsets = {...this.state.offsets};
+        const computedOffset = getComputedOffset(
+          computeOffset,
+          left,
+          top,
+          width,
+          height,
+        );
+        const oldOffsets = { ...this.state.offsets };
         const newState = {
           menuState: STATES.MEASURING,
           component: { left, top, width, height },
           offsets: {
             ...oldOffsets,
-            ...( extraOffset ? {staticOffset: extraOffset} : {}),
-            ...( computedOffset ? {computedOffset: computedOffset} : {})
+            ...(extraOffset ? { staticOffset: extraOffset } : {}),
+            ...(computedOffset ? { computedOffset: computedOffset } : {}),
           },
-          ...( stickTo ? {stickTo: stickTo} : {})
-        }
+          ...(stickTo ? { stickTo: stickTo } : {}),
+        };
         this.setState(newState);
       });
     }
-  }
+  };
 
   hide = () => {
     const { animation } = this.state;
@@ -192,7 +205,7 @@ class Menu extends React.Component {
             ...animation,
             menuSize: new Animated.ValueXY({ x: 0, y: 0 }),
             opacity: new Animated.Value(0),
-          }
+          },
         },
         () => {
           /* Invoke onHidden callback if defined */
@@ -202,14 +215,14 @@ class Menu extends React.Component {
         },
       );
     });
-  }
+  };
 
   render() {
     const dimensions = Dimensions.get('screen');
     const { menu, component, animation } = this.state;
     const menuSize = {
       width: animation.menuSize.x,
-      height: animation.menuSize.y
+      height: animation.menuSize.y,
     };
 
     /* Adjust position of menu */
@@ -221,7 +234,10 @@ class Menu extends React.Component {
         translateX: Animated.multiply(animation.menuSize.x, -1),
       });
 
-      menu.left = Math.min(dimensions.width - SCREEN_INDENT, menu.left + component.width);
+      menu.left = Math.min(
+        dimensions.width - SCREEN_INDENT,
+        menu.left + component.width,
+      );
     }
 
     /* Flip by Y axis if menu hits bottom screen border */
@@ -230,7 +246,10 @@ class Menu extends React.Component {
         translateY: Animated.multiply(animation.menuSize.y, -1),
       });
 
-      menu.top = Math.min(dimensions.height - SCREEN_INDENT, menu.top + component.height);
+      menu.top = Math.min(
+        dimensions.height - SCREEN_INDENT,
+        menu.top + component.height,
+      );
     }
 
     const shadowMenuContainerStyle = {
@@ -242,9 +261,11 @@ class Menu extends React.Component {
 
     const { menuState } = this.state;
     const animationStarted = menuState === STATES.ANIMATING;
-    const modalVisible = ((menuState === STATES.MEASURING) || 
-                         (menuState === STATES.CALCULATING) || 
-                         (menuState === STATES.SHOWN)) || animationStarted;
+    const modalVisible =
+      menuState === STATES.MEASURING ||
+      menuState === STATES.CALCULATING ||
+      menuState === STATES.SHOWN ||
+      animationStarted;
 
     const { testID, style, children } = this.props;
 
@@ -266,7 +287,7 @@ class Menu extends React.Component {
           <TouchableWithoutFeedback onPress={this.hide}>
             <View style={StyleSheet.absoluteFill}>
               <Animated.View
-                {...(!animationStarted ? {onLayout: this._onMenuLayout} : {})}
+                {...(!animationStarted ? { onLayout: this._onMenuLayout } : {})}
                 style={[
                   styles.shadowMenuContainer,
                   shadowMenuContainerStyle,
@@ -295,36 +316,40 @@ class Menu extends React.Component {
       const { stickTo, component, offsets } = this.state;
 
       const baseOffset = getMenuOffset(stickTo, component, menu);
-      const allOffsets = [baseOffset, offsets.staticOffset, offsets.computedOffset];
+      const allOffsets = [
+        baseOffset,
+        offsets.staticOffset,
+        offsets.computedOffset,
+      ];
       const finalOffset = getSummarizedOffset(allOffsets);
       this.setState({
         menuState: STATES.SHOWN,
         menu: {
           ...menu,
           left: finalOffset.left,
-          top: finalOffset.top
-        }
+          top: finalOffset.top,
+        },
       });
     } else if (menuState === STATES.SHOWN) {
       const { animation } = this.state;
       this.setState(
         {
-          menuState: STATES.ANIMATING
+          menuState: STATES.ANIMATING,
         },
         () => {
           Animated.parallel([
             Animated.timing(animation.menuSize, {
               toValue: { x: menu.width, y: menu.height },
               duration: ANIMATION_DURATION,
-              easing: EASING
+              easing: EASING,
             }),
             Animated.timing(animation.opacity, {
               toValue: 1,
               duration: ANIMATION_DURATION,
-              easing: EASING
-            })
+              easing: EASING,
+            }),
           ]).start();
-        }
+        },
       );
     }
   }
