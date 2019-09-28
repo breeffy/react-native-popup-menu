@@ -1,6 +1,16 @@
 # react-native-enhanced-popup-menu &middot; [![npm](https://img.shields.io/npm/v/react-native-enhanced-popup-menu.svg)](https://www.npmjs.com/package/react-native-enhanced-popup-menu) [![license](https://img.shields.io/npm/l/react-native-enhanced-popup-menu.svg)](https://github.com/likern/react-native-enhanced-popup-menu/blob/master/LICENSE)
 
-## Note: this project is the fork of the original [react-native-material-menu](https://github.com/mxck/react-native-material-menu)
+## Features
+| Positioning                | Description                                          |
+| :------------------------- | :--------------------------------------------------- |
+| snap positioning           | Allows to snap menu to any element's border          |
+| stick to center of element | Allows to show menu by the center of element's width |
+| dynamic positioning        | Allows to add dynamic offsets to base menu position  |
+| position constraints       | Automatically applies constraints to never allow to go beyond screen borders. You always will see full menu        |
+
+| Animations            | Description         |
+| :---------------------| :-------------------|
+| Right-to-Left support | **Not implemented**. See [#1](https://github.com/likern/react-native-enhanced-popup-menu/issues/1) |
 
 Pure JavaScript [material
 menu](https://material.io/guidelines/components/menus.html) component for React
@@ -163,7 +173,11 @@ export default App;
 | :---- | :---------- | -----: | :----------------- |
 | color | Line color  | String | "rgba(0,0,0,0.12)" |
 
+
+## Acknowledges
+This project was inspired by [react-native-material-menu](https://github.com/mxck/react-native-material-menu)
+
 ## License
 **Original work** Copyright (c) 2017 Maksim Miliyutin
 
-**Modified work** Copyright 2018 Victor Malov
+**Modified work** Copyright 2019 Victor Malov
