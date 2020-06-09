@@ -2,9 +2,26 @@
   "name": "react-native-enhanced-popup-menu",
   "version": "0.6.1",
   "description": "Popup Menu for React Native",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "homepage": "https://github.com/likern/react-native-enhanced-popup-menu",
+  "license": "Apache-2.0",
+  "contributors": [
+    {
+      "name": "Maksim Milyutin (original author)",
+      "email": "mmxckk@gmail.com"
+    },
+    {
+      "name": "Victor Malov (current maintainer)",
+      "email": "victor@malov.im",
+      "url": "https://medium.com/scriply"
+    }
+  ],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build:index": "npx tsc -d --emitDeclarationOnly ./src/index.ts",
+    "prepack": "npx tsc",
+    "postpack": "npx rimraf dist/"
   },
   "keywords": [
     "react-native",
@@ -17,18 +34,21 @@
     "popup-menu",
     "dropdown"
   ],
-  "contributors": [
-    {
-      "name": "Maksim Milyutin (original author)",
-      "email": "mmxckk@gmail.com"
-    },
-    {
-      "name": "Victor Malov (current maintainer)",
-      "email": "victor@malov.im",
-      "url": "https://medium.com/scriply"
-    }
+  "files": [
+    "dist/"
   ],
-  "license": "MIT",
+  "peerDependencies": {
+    "react": ">= 16.3.0",
+    "react-native": ">= 0.54.0"
+  },
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/likern/react-native-enhanced-popup-menu/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/likern/react-native-enhanced-popup-menu.git"
+  },
   "devDependencies": {
     "@testing-library/react-native": "^4.0.9",
     "babel-eslint": "~8.2.0",
@@ -40,20 +60,7 @@
     "eslint-plugin-react": "~7.10.0",
     "jest": "^24.9.0",
     "prettier": "~1.13.7",
-    "react-test-renderer": "^16.9.0"
-  },
-  "peerDependencies": {
-    "react": ">= 16.3.0",
-    "react-native": ">= 0.54.0"
-  },
-  "dependencies": {
-    "prop-types": "^15.6.0"
-  },
-  "bugs": {
-    "url": "https://github.com/likern/react-native-enhanced-popup-menu/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/likern/react-native-enhanced-popup-menu.git"
+    "react-test-renderer": "^16.9.0",
+    "typescript": "^3.9.5"
   }
 }

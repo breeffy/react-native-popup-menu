@@ -1,17 +1,16 @@
 module.exports = {
-  parser: 'babel-eslint',
-  extends: ['airbnb', 'prettier', 'prettier/react'],
-
-  rules: {
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
-
-    'no-underscore-dangle': 'off',
-    'no-use-before-define': 'off',
-    'import/no-unresolved': 'off', // peer dependecies
-
-    // React
-    'react/require-default-props': 'off',
-    'react/no-typos': 'off',
-    'react/destructuring-assignment': 'off',
+  root: true,
+  extends: '@react-native-community',
+  plugins: ['react-hooks'],
+  parserOptions: {
+    warnOnUnsupportedTypeScriptVersion: false
   },
+  rules: {
+    'jsx-quotes': ['error', 'prefer-single'],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'comma-dangle': 'off',
+    'react-native/no-inline-styles': 'off',
+    curly: 'off'
+  }
 };

@@ -1,15 +1,16 @@
 # react-native-enhanced-popup-menu &middot; [![npm](https://img.shields.io/npm/v/react-native-enhanced-popup-menu.svg)](https://www.npmjs.com/package/react-native-enhanced-popup-menu) [![license](https://img.shields.io/npm/l/react-native-enhanced-popup-menu.svg)](https://github.com/likern/react-native-enhanced-popup-menu/blob/master/LICENSE)
 
 ## Features
-| Positioning                | Description                                          |
-| :------------------------- | :--------------------------------------------------- |
-| snap positioning           | Allows to snap menu to any element's border          |
-| stick to center of element | Allows to show menu by the center of element's width |
-| dynamic positioning        | Allows to add dynamic offsets to base menu position  |
-| position constraints       | Automatically applies constraints to never allow to go beyond screen borders. You always will see full menu        |
 
-| Animations            | Description         |
-| :---------------------| :-------------------|
+| Positioning                | Description                                                                                                 |
+| :------------------------- | :---------------------------------------------------------------------------------------------------------- |
+| snap positioning           | Allows to snap menu to any element's border                                                                 |
+| stick to center of element | Allows to show menu by the center of element's width                                                        |
+| dynamic positioning        | Allows to add dynamic offsets to base menu position                                                         |
+| position constraints       | Automatically applies constraints to never allow to go beyond screen borders. You always will see full menu |
+
+| Animations            | Description                                                                                        |
+| :-------------------- | :------------------------------------------------------------------------------------------------- |
 | Right-to-Left support | **Not implemented**. See [#1](https://github.com/likern/react-native-enhanced-popup-menu/issues/1) |
 
 Pure JavaScript [material
@@ -31,40 +32,39 @@ yarn add react-native-enhanced-popup-menu
 ## Usage example
 
 ```jsx
-import React from "react";
-import { Text, View, Button } from "react-native";
-import Menu, { MenuItem, MenuDivider, Position } from "react-native-enhanced-popup-menu";
+import React from 'react';
+import { Text, View, Button } from 'react-native';
+import Menu, {
+  MenuItem,
+  MenuDivider,
+  Position
+} from 'react-native-enhanced-popup-menu';
 
-const App = (props) => {
+const App = props => {
   let textRef = React.createRef();
   let menuRef = null;
 
-  const setMenuRef = ref => menuRef = ref;
+  const setMenuRef = ref => (menuRef = ref);
   const hideMenu = () => menuRef.hide();
-  const showMenu = () => menuRef.show(textRef.current, stickTo = Position.BOTTOM_CENTER);
+  const showMenu = () =>
+    menuRef.show(textRef.current, (stickTo = Position.BOTTOM_CENTER));
 
   const onPress = () => showMenu();
 
   return (
-    <View style={{ flex: 1, alignItems: "center", backgroundColor: "white"}}>
-      <Text
-        ref={textRef}
-        style={{ fontSize: 20, textAlign: "center" }}
-       >
+    <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'white' }}>
+      <Text ref={textRef} style={{ fontSize: 20, textAlign: 'center' }}>
         Text component
-       </Text>
+      </Text>
 
-      <Button
-        title="Show menu"
-        onPress={onPress}
-      />
+      <Button title="Show menu" onPress={onPress} />
 
-      <Menu
-        ref={setMenuRef}
-      >
+      <Menu ref={setMenuRef}>
         <MenuItem onPress={hideMenu}>Item 1</MenuItem>
         <MenuItem onPress={hideMenu}>Item 2</MenuItem>
-        <MenuItem onPress={hideMenu} disabled>Item 3</MenuItem>
+        <MenuItem onPress={hideMenu} disabled>
+          Item 3
+        </MenuItem>
         <MenuDivider />
         <MenuItem onPress={hideMenu}>Item 4</MenuItem>
       </Menu>
@@ -93,15 +93,18 @@ export default App;
 | hide() | Hides menu  |
 
 #### show method parameters
-| name          | description                                                |     type  | default             |
+
+| name          | description                                                |      type | default             |
 | :------------ | :--------------------------------------------------------- | --------: | :------------------ |
 | ref           | React reference to component (**required**)                | Reference | -                   |
-| stickTo       | To which component border(s) we will stick menu (optional) | Position  | Position.TOP_LEFT   |
-| extraOffset   | Additional offset to stickTo (optional)                    | Object    | { left: 0, top: 0 } |
-| computeOffset | Additional **computed** offset to stickTo (optional)       | Function  | { left: 0, top: 0 } |
+| stickTo       | To which component border(s) we will stick menu (optional) |  Position | Position.TOP_LEFT   |
+| extraOffset   | Additional offset to stickTo (optional)                    |    Object | { left: 0, top: 0 } |
+| computeOffset | Additional **computed** offset to stickTo (optional)       |  Function | { left: 0, top: 0 } |
 
 **stickTo** parameter set **relative base position** of menu, it is always **relative to component**.
+
 ##### Position enum values
+
 | value         | description                                         |
 | :------------ | :-------------------------------------------------- |
 | TOP_LEFT      | Show the menu at the top left of the component      |
@@ -112,30 +115,34 @@ export default App;
 | BOTTOM_CENTER | Show the menu at the bottom center of the component |
 
 **extraOffset** parameter set **additional offset to base position** of menu. It's used if you want customize **stickTo**, adding additional offset. **extraOffset** is an `Object` with the following allowed properties.
-##### extraOffset object properties
-| value  | description | type |
-| :----- | :---------- | :---------- |
-| top    | [Offset the top edge from menu base position](https://facebook.github.io/react-native/docs/layout-props#top) | Number |
-| bottom | [Offset the bottom edge from menu base position](https://facebook.github.io/react-native/docs/layout-props#bottom) | Number |
-| left   | [Offset the left edge from menu base position](https://facebook.github.io/react-native/docs/layout-props#left) | Number |
-| right  | [Offset the right edge from menu base position](https://facebook.github.io/react-native/docs/layout-props#right) | Number |
 
-| **Notes**   | **Example** |
-| :----- | :---------- |
-| extraOffset **can have duplicate properties** (they all will be applied correctly) | `{ top: 10, top: -5, top: 15 }`|
-| extraOffset **values can be negative too** | `{ top: 10, top: -5, top: 15 }`|
+##### extraOffset object properties
+
+| value  | description                                                                                                        | type   |
+| :----- | :----------------------------------------------------------------------------------------------------------------- | :----- |
+| top    | [Offset the top edge from menu base position](https://facebook.github.io/react-native/docs/layout-props#top)       | Number |
+| bottom | [Offset the bottom edge from menu base position](https://facebook.github.io/react-native/docs/layout-props#bottom) | Number |
+| left   | [Offset the left edge from menu base position](https://facebook.github.io/react-native/docs/layout-props#left)     | Number |
+| right  | [Offset the right edge from menu base position](https://facebook.github.io/react-native/docs/layout-props#right)   | Number |
+
+| **Notes**                                                                          | **Example**                     |
+| :--------------------------------------------------------------------------------- | :------------------------------ |
+| extraOffset **can have duplicate properties** (they all will be applied correctly) | `{ top: 10, top: -5, top: 15 }` |
+| extraOffset **values can be negative too**                                         | `{ top: 10, top: -5, top: 15 }` |
 
 **computeOffset** parameter is a **callback function** which will be called with **position and size of component** (`computeOffset(left, top, width, height)`). It's used if you want to customize **stickTo** dynamically and your computed offset depends on component position / size (for example to show menu centered you need to know component width).
 
 ##### computeOffset callback parameters
-| name      | description                                                                          | type   |
-| :-------- | :----------------------------------------------------------------------------------- | -----: |
-| left      | position of **component** on the horizontal axis (*from top left **window** corner*) | Number |
-| top       | position of **component** on the vertical axis (*from top left **window** corner*)   | Number |
-| width     | width of **component**                                                               | Number |
-| height    | height of **component**                                                              | Number |
+
+| name   | description                                                                          |   type |
+| :----- | :----------------------------------------------------------------------------------- | -----: |
+| left   | position of **component** on the horizontal axis (_from top left **window** corner_) | Number |
+| top    | position of **component** on the vertical axis (_from top left **window** corner_)   | Number |
+| width  | width of **component**                                                               | Number |
+| height | height of **component**                                                              | Number |
 
 **computeOffset callback** should return `Object` with the same properties as **extraOffset** `Object`.
+
 ```javascript
 /* Example of computeOffset return value */
 {
@@ -147,8 +154,8 @@ export default App;
 }
 ```
 
-| **Notes** | 
-| :-------- | 
+| **Notes**                                                                                                                                                                                                            |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | You can use **extraOffset** parameter **or computeOffset or both parameters simultaneously**. So, the final position of menu is calculated as `basePosition + extraOffset + computeOffset(left, top, width, height)` |
 
 ## MenuItem
@@ -172,12 +179,3 @@ export default App;
 | name  | description |   type | default            |
 | :---- | :---------- | -----: | :----------------- |
 | color | Line color  | String | "rgba(0,0,0,0.12)" |
-
-
-## Acknowledges
-This project was inspired by [react-native-material-menu](https://github.com/mxck/react-native-material-menu)
-
-## License
-**Original work** Copyright (c) 2017 Maksim Miliyutin
-
-**Modified work** Copyright 2019 Victor Malov
