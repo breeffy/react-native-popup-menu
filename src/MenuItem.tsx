@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from 'react';
+import * as React from 'react';
+import { PropsWithChildren } from 'react';
 
 import {
   StyleSheet,
@@ -10,15 +11,15 @@ import {
 } from 'react-native';
 
 interface MenuItemProps {
-  disabled: boolean;
-  disabledTextColor: string;
-  underlayColor: TouchableHighlightProps['underlayColor'];
+  disabled?: boolean;
+  disabledTextColor?: string;
+  underlayColor?: TouchableHighlightProps['underlayColor'];
   style?: TouchableHighlightProps['style'];
-  textStyle: TextProps['style'];
+  textStyle?: TextProps['style'];
   onPress: TouchableHighlightProps['onPress'];
 }
 
-const MenuItem = ({
+export const MenuItem = ({
   disabled = false,
   disabledTextColor = '#BDBDBD',
   underlayColor = '#E0E0E0',
@@ -64,5 +65,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16
   }
 });
-
-export default MenuItem;

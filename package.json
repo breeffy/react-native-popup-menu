@@ -1,6 +1,6 @@
 {
   "name": "react-native-enhanced-popup-menu",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Popup Menu for React Native",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@testing-library/react-native": "^4.0.9",
+    "@types/react-native": "^0.62.13",
     "babel-eslint": "~8.2.0",
     "eslint": "~4.19.0",
     "eslint-config-airbnb": "~17.0.0",
@@ -61,6 +62,6 @@
     "jest": "^24.9.0",
     "prettier": "~1.13.7",
     "react-test-renderer": "^16.9.0",
-    "typescript": "^3.9.5"
+    "typescript": "^3.8.3"
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import {
   Animated,
@@ -15,7 +15,7 @@ import {
   LayoutChangeEvent
 } from 'react-native';
 
-export const enum Position {
+export enum Position {
   TOP_LEFT,
   TOP_RIGHT,
   TOP_CENTER,
@@ -158,7 +158,7 @@ interface State {
   };
 }
 
-class Menu extends React.Component<Props, State> {
+export class Menu extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -230,13 +230,13 @@ class Menu extends React.Component<Props, State> {
               toValue: { x: menu.width, y: menu.height },
               duration: ANIMATION_DURATION,
               easing: EASING,
-              useNativeDriver: true
+              useNativeDriver: false
             }),
             Animated.timing(animation.opacity, {
               toValue: 1,
               duration: ANIMATION_DURATION,
               easing: EASING,
-              useNativeDriver: true
+              useNativeDriver: false
             })
           ]).start();
         }
@@ -313,7 +313,7 @@ class Menu extends React.Component<Props, State> {
       toValue: 0,
       duration: ANIMATION_DURATION,
       easing: EASING,
-      useNativeDriver: true
+      useNativeDriver: false
     }).start(() => {
       /* Reset state */
       this.setState(
@@ -450,5 +450,3 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   }
 });
-
-export default Menu;
