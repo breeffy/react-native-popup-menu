@@ -35,6 +35,8 @@
     "dropdown"
   ],
   "files": [
+    "NOTICE",
+    "LICENSE",
     "dist/"
   ],
   "peerDependencies": {
