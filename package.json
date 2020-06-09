@@ -65,5 +65,13 @@
     "prettier": "~1.13.7",
     "react-test-renderer": "^16.9.0",
     "typescript": "^3.8.3"
+  },
+  "resolutions": {
+    "minimist": "^1.2.5",
+    "acorn": "^6.4.1",
+    "kind-of": "^6.0.3",
+    "handlebars": "^4.3.0",
+    "js-yaml": "^3.13.1",
+    "lodash": "^4.17.12"
   }
 }
