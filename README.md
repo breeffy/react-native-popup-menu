@@ -36,6 +36,7 @@ yarn add "@breeffy/react-native-popup-menu"
 | Library version | React Native version                | Description                                                                                                 |
 | :------------------------- | :------------------------- | :---------------------------------------------------------------------------------------------------------- |
 | [0.7.0](https://www.npmjs.com/package/@breeffy/react-native-popup-menu/v/0.7.0) | [React Native 0.62.2](https://github.com/breeffy/example-react-native-popup-menu/tree/v0.62.2)           | [Shows](https://github.com/breeffy/example-react-native-popup-menu/blob/v0.62.2/src/App.tsx) how to use [react-native-popup-menu](https://github.com/breeffy/react-native-popup-menu) with **Typescript** |
+| [0.7.0](https://www.npmjs.com/package/@breeffy/react-native-popup-menu/v/0.7.0) | [React Native 0.62.2](https://github.com/breeffy/example-react-native-popup-menu-js/tree/v0.62.2)           | [Shows](https://github.com/breeffy/example-react-native-popup-menu-js/blob/v0.62.2/src/App.js) how to use [react-native-popup-menu](https://github.com/breeffy/react-native-popup-menu) with **Javascript** |
 
 ```tsx
 ...
