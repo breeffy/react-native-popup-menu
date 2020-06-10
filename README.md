@@ -13,82 +13,33 @@
 | :-------------------- | :------------------------------------------------------------------------------------------------- |
 | Right-to-Left support | **Not implemented**. See [#1](https://github.com/likern/react-native-enhanced-popup-menu/issues/1) |
 
-Pure JavaScript [material
+Pure TypeScript [material
 menu](https://material.io/guidelines/components/menus.html) component for React
 Native.
 
-<img src="https://media.giphy.com/media/3ov9jUvQH4U82JGNRC/giphy.gif" />
+![initial-gif](https://media.giphy.com/media/3ov9jUvQH4U82JGNRC/giphy.gif)
+![example-application-gif](https://media.giphy.com/media/TIFPWCfU3KyZyNX1P8/giphy.gif)
 
 ## Install
+#### Using npm
 
 ```bash
-npm install react-native-enhanced-popup-menu --save
-
-or
-
-yarn add react-native-enhanced-popup-menu
+npm install "@breeffy/react-native-popup-menu" --save
+```
+#### Using yarn
+```
+yarn add "@breeffy/react-native-popup-menu"
 ```
 
-## Usage example
+## Usage
+
+| Library version | React Native version                | Description                                                                                                 |
+| :------------------------- | :------------------------- | :---------------------------------------------------------------------------------------------------------- |
+| [0.7.0](https://www.npmjs.com/package/@breeffy/react-native-popup-menu/v/0.7.0) | [React Native 0.62.2](https://github.com/breeffy/example-react-native-popup-menu/tree/v0.62.2)           | [Shows](https://github.com/breeffy/example-react-native-popup-menu/blob/v0.62.2/src/App.tsx) how to use [react-native-popup-menu](https://github.com/breeffy/react-native-popup-menu) with **Typescript** |
 
 ```tsx
-import React from 'react';
-import {
-  View,
-  Text,
-  Button as RNButton,
-  StyleProp,
-  ViewStyle,
-} from 'react-native';
-import {
-  Menu,
-  MenuItem,
-  MenuDivider,
-  Position,
-} from 'react-native-enhanced-popup-menu';
-
-declare const global: {HermesInternal: null | {}};
-
-interface ElementToStickProps {
-  style?: StyleProp<ViewStyle>;
-}
-
-const ElementToStick = React.forwardRef<View, ElementToStickProps>(
-  ({style}, ref) => {
-    return (
-      <View
-        ref={ref}
-        style={[
-          {
-            padding: 16,
-            borderColor: 'grey',
-            borderWidth: 2,
-            justifyContent: 'center',
-            alignItems: 'center',
-          },
-          style,
-        ]}>
-        <Text>Element to which menu is sticked</Text>
-      </View>
-    );
-  },
-);
-
-interface ButtonProps {
-  title: string;
-  style?: StyleProp<ViewStyle>;
-  onPress: () => void;
-}
-
-const Button = ({title, style, onPress}: ButtonProps) => {
-  return (
-    <View style={style}>
-      <RNButton title={title} onPress={onPress} />
-    </View>
-  );
-};
-
-const App = () => {
+...
+export const App = () => {
   let elementRef = React.createRef<View>();
   let menuRef: Menu | null = null;
 
@@ -97,38 +48,35 @@ const App = () => {
   const showMenu = () => {
     menuRef?.show(elementRef.current, Position.TOP_LEFT);
   };
-
   const onPress = () => showMenu();
+
   return (
-    <>
-      <View
-        style={{
-          width: '100%',
-          height: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <ElementToStick ref={elementRef} />
-        <Button
-          style={{position: 'absolute', bottom: 64}}
-          title={'Press to show menu'}
-          onPress={onPress}
-        />
-        <Menu ref={setMenuRef}>
-          <MenuItem onPress={hideMenu}>Item 1</MenuItem>
-          <MenuItem onPress={hideMenu}>Item 2</MenuItem>
-          <MenuItem onPress={hideMenu} disabled>
-            Item 3
-          </MenuItem>
-          <MenuDivider />
-          <MenuItem onPress={hideMenu}>Item 4</MenuItem>
-        </Menu>
-      </View>
-    </>
+    <View
+      style={{
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
+      <ElementToStick ref={elementRef} />
+      <Button
+        style={{ position: 'absolute', bottom: 64 }}
+        title={'Press to show menu'}
+        onPress={onPress}
+      />
+      <Menu ref={setMenuRef}>
+        <MenuItem onPress={hideMenu}>Item 1</MenuItem>
+        <MenuItem onPress={hideMenu}>Item 2</MenuItem>
+        <MenuItem onPress={hideMenu} disabled>
+          Item 3
+        </MenuItem>
+        <MenuDivider />
+        <MenuItem onPress={hideMenu}>Item 4</MenuItem>
+      </Menu>
+    </View>
   );
 };
-
-export default App;
 ```
 
 ## Menu
