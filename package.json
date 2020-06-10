@@ -23,6 +23,7 @@
     "postpack": "npx rimraf dist/"
   },
   "keywords": [
+    "breeffy",
     "react-native",
     "react",
     "menu",
