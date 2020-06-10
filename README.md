@@ -1,4 +1,4 @@
-# react-native-enhanced-popup-menu &middot; [![npm](https://img.shields.io/npm/v/react-native-enhanced-popup-menu.svg)](https://www.npmjs.com/package/react-native-enhanced-popup-menu) [![license](https://img.shields.io/npm/l/react-native-enhanced-popup-menu.svg)](https://github.com/likern/react-native-enhanced-popup-menu/blob/master/LICENSE)
+# react-native-popup-menu &middot; [![npm](https://img.shields.io/npm/v/@breeffy/react-native-popup-menu)](https://www.npmjs.com/package/@breeffy/react-native-popup-menu) [![license](https://img.shields.io/npm/l/@breeffy/react-native-popup-menu)](https://github.com/breeffy/react-native-popup-menu/blob/master/LICENSE)
 
 ## Features
 
