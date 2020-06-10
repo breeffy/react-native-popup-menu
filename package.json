@@ -1,20 +1,19 @@
 {
-  "name": "react-native-enhanced-popup-menu",
+  "name": "@breeffy/react-native-popup-menu",
   "version": "0.7.0",
   "description": "Popup Menu for React Native",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "homepage": "https://github.com/likern/react-native-enhanced-popup-menu",
+  "homepage": "https://github.com/breeffy/react-native-popup-menu",
   "license": "Apache-2.0",
   "contributors": [
     {
-      "name": "Maksim Milyutin (original author)",
-      "email": "mmxckk@gmail.com"
+      "name": "Victor Malov",
+      "email": "victor.malov@breeffy.com"
     },
     {
-      "name": "Victor Malov (current maintainer)",
-      "email": "victor@malov.im",
-      "url": "https://medium.com/scriply"
+      "name": "Maksim Milyutin",
+      "email": "mmxckk@gmail.com"
     }
   ],
   "scripts": {
@@ -45,11 +44,11 @@
   },
   "dependencies": {},
   "bugs": {
-    "url": "https://github.com/likern/react-native-enhanced-popup-menu/issues"
+    "url": "https://github.com/breeffy/react-native-popup-menu/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/likern/react-native-enhanced-popup-menu.git"
+    "url": "https://github.com/breeffy/react-native-popup-menu.git"
   },
   "devDependencies": {
     "@testing-library/react-native": "^4.0.9",
