@@ -1,6 +1,6 @@
 {
   "name": "@breeffy/react-native-popup-menu",
-  "version": "0.7.0",
+  "version": "0.7.1-dev.0",
   "description": "Popup Menu for React Native",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
