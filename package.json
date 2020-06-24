@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "@breeffy/react-native-popup-menu",
   "version": "0.8.0",
   "description": "Popup Menu for React Native",
