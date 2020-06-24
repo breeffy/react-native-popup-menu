@@ -253,8 +253,24 @@ export class Menu extends React.Component<Props, State> {
     computeOffset: ComputeOffsetCallback = null
   ) => {
     if (componentRef !== null) {
+      if (typeof componentRef.measureInWindow !== 'function') {
+        throw Error(
+          `Provide reference to component which has method measureInWindow`
+        );
+      }
+
       componentRef.measureInWindow(
         (x: number, y: number, width: number, height: number) => {
+          if (
+            x === undefined ||
+            y === undefined ||
+            width === undefined ||
+            height === undefined
+          ) {
+            throw Error(
+              `Can't calculate popup menu position because measureInWindow returned undefined value: [x: ${x}, y: ${y}, width: ${width}, height: ${height}]; Hint: set collapsable={false} View property`
+            );
+          }
           const top = Math.max(SCREEN_INDENT, y);
           const left = Math.max(SCREEN_INDENT, x);
 
